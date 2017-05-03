@@ -6,10 +6,14 @@ const { mix } = require('laravel-mix');
  |--------------------------------------------------------------------------
  |
  | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
+ | for your Laravel application.
  |
+ | https://laravel.com/docs/5.4/mix
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js');
+    //.extract(['vendors'])
+
+mix.stylus('resources/assets/styles/app.styl', 'public/css');
+
+mix.browserSync('enkii.app');
