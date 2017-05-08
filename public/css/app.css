@@ -1,3 +1,30 @@
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,800);
 body {
   color: $text-color;
+  background-color: #f4f3ee;
+  font-size: 18px;
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 300;
+}
+#main {
+  height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+h1 {
+  color: #052556;
+  font-size: 2rem;
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  padding-bottom: 1rem;
+}
+p {
+  color: #1cfed1;
 }

@@ -16,5 +16,22 @@ $background-color = #F4F3EE
 
 
 // Fonts
-//https://fonts.google.com/specimen/Work+Sans
+
 //https://fonts.google.com/featured/Five+Fresh+Headline+and+Body+Text+Pairings
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,800')
+
+$default-font = 'Work Sans', Arial, sans-serif
+$default-font-weight = 300
+
+$headline-font = $default-font
+$headline-font-weight = 800
+
+
+$defaultFontStyles()
+    font-family $default-font
+    font-weight $default-font-weight
+
+$headlineFontStyles()
+    font-family $headline-font
+    font-weight $headline-font-weight
+
