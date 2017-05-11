@@ -1,4 +1,4 @@
-@extends('default', ['title' => 'HOME'])
+@extends('layouts/default')
 
 @section('content')
     <div id="main">

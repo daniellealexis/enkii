@@ -11,9 +11,9 @@ const { mix } = require('laravel-mix');
  | https://laravel.com/docs/5.4/mix
  */
 
-mix.js('resources/assets/js/app.js', 'public/js');
+mix.js('resources/assets/js/app-main.js', 'public/js');
     //.extract(['vendors'])
 
-mix.stylus('resources/assets/styles/app.styl', 'public/css');
+mix.stylus('resources/assets/styles/app-main.styl', 'public/css');
 
 mix.browserSync('enkii.app');
