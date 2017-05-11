@@ -4,5 +4,5 @@
 
 <title>{{ $title or 'Enkii' }}</title>
 
-<link href="{{ asset('css/app-main.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ URL::asset('css/app-main.css') }}" rel="stylesheet" type="text/css">
 @stack('styles')

@@ -1,2 +1,2 @@
-<script src="{{ asset('/js/app-main.js') }}"></script>
+<script src="{{ URL::asset('js/app-main.js') }}"></script>
 @stack('scripts')
