@@ -1,0 +1,27 @@
+/*
+    Base styles file. Overall app styles & default element styling
+*/
+
+@require './substyles/reset'
+
+body
+    color $text-color
+    background-color $background-color
+    font-size 18px
+    $defaultFontStyles()
+
+body
+html
+    height 100%
+
+h1
+    color $primary-color
+    font-size 3rem
+    $headlineFontStyles()
+    margin 0
+    line-height 1
+
+p
+    color $highlight-color
+    margin 0
+    padding-left 1.5rem
