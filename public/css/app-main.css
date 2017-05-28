@@ -1,22 +1,140 @@
-@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,800);
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,800);/*
+    Main style file that includes the other root style files
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
 body {
-  color: $text-color;
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  color: #020e21;
   background-color: #f4f3ee;
   font-size: 18px;
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 300;
 }
-#main {
-  height: 100vh;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+body,
+html {
+  height: 100%;
 }
 h1 {
   color: #052556;
@@ -30,4 +148,112 @@ p {
   color: #1cfed1;
   margin: 0;
   padding-left: 1.5rem;
+}
+.btn--primary {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  background-color: #1cfed1;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  outline: none;
+}
+.btn--primary:hover {
+  background-color: #01e1b4;
+}
+.btn--primary:active {
+  background-color: #01c59e;
+}
+#main {
+  height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.horizontal-center {
+  min-height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.form--thin {
+  min-width: 400px;
+  margin: auto;
+}
+.form__header {
+  padding-bottom: 0.5rem;
+}
+.form__group {
+  padding-top: 1rem;
+}
+.form__input-label {
+  padding-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+}
+.form .textbox {
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form .checkbox {
+  font-size: 0.85rem;
+}
+.form .btn--link {
+  display: block;
+  font-size: 0.65rem;
+  margin-top: 0.75rem;
+  color: #052556;
+}
+.nav {
+  width: 100%;
+}
+.nav a {
+  color: inherit;
+}
+.nav--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.nav--headline {
+  font-size: 1.75rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  color: #052556;
+}
+.nav--headline a {
+  text-decoration: none;
+  display: inline-block;
+}
+.nav--list-item {
+  display: inline-block;
+  padding: 0 0.25rem;
+  color: #020e21;
 }
