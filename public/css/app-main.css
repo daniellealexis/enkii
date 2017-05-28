@@ -156,6 +156,15 @@ p {
   font-size: 1rem;
   background-color: #1cfed1;
   color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  outline: none;
+}
+.btn--primary:hover {
+  background-color: #01e1b4;
+}
+.btn--primary:active {
+  background-color: #01c59e;
 }
 #main {
   height: 100vh;
@@ -196,6 +205,11 @@ p {
   display: block;
   width: 100%;
   box-sizing: border-box;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
 }
 .form .textbox {
   padding: 0.75rem;

@@ -34,3 +34,12 @@ p
     font-size 1rem
     background-color $highlight-color
     color #FFF
+    cursor pointer
+    transition background-color 0.15s
+    outline none
+
+    &:hover
+        background-color darken($highlight-color, 20%)
+
+    &:active
+        background-color darken($highlight-color, 30%)
