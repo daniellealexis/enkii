@@ -39,7 +39,9 @@ class AccountController extends Controller
 
         return [
             'name'=>$user['name'],
-            'email'=>$user['email']
+            'email'=>$user['email'],
+            'twitterHandle'=>$user['twitter_handle'],
+            'jobTitle'=>$user['job_title'],
         ];
     }
 }
