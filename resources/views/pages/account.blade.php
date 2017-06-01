@@ -1,20 +1,35 @@
 @extends('layouts.default')
 
 @section('content')
+<h4>{{ $message or '' }}</h4>
+<!--
+    To-do: Make custom components for the groups
+    https://laravelcollective.com/docs/master/html#custom-components
+-->
 <main class="account horizontal-center">
     <section class="form form--thin">
-    <h1 class="form__header">{{ $name }}</h1>
-    <div class="form__group">
-        <label class="form__input-label">Email</label>
-        <input class="textbox" name="email" value="{{ $email }}"></input>
-    </div>
-    <div class="form__group">
-        <label class="form__input-label">Job Title</label>
-        <input class="textbox" name="job title" value="{{ $jobTitle }}"></input>
-    </div>
-    <div class="form__group">
-        <label class="form__input-label">Twitter</label>
-        <input class="textbox" name="twitter handle" value="{{ $twitterHandle }}"></input>
-    </div>
+        {{ Form::model(Auth::user(), ['url' => 'api/account']) }}
+            <h1 class="form__header">{{ $name }}</h1>
+            {{ Form::text('name', null, ['class' => 'textbox']) }}
+
+            <div class="form__group">
+                <label class="form__input-label">Email</label>
+                {{ Form::email('email', null, ['class' => 'textbox']) }}
+            </div>
+            <div class="form__group">
+                <label class="form__input-label">Job Title</label>
+                {{ Form::text('job_title', null, ['class' => 'textbox']) }}
+            </div>
+            <div class="form__group">
+                <label class="form__input-label">Twitter</label>
+                {{ Form::text('twitter_handle', null, ['class' => 'textbox']) }}
+            </div>
+            <div class="form__group">
+                {{ Form::submit('Update Account', ['class' => 'btn--primary']) }}
+            </div>
+        {{ Form::close() }}
+    </section>
 </main>
+
+
 @endsection
