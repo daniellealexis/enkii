@@ -225,7 +225,11 @@ p {
   padding-bottom: 0.5rem;
 }
 .form__group {
-  padding-top: 1rem;
+  margin-top: 1rem;
+  position: relative;
+}
+.form__group--has-error input {
+  border-color: #fd3572;
 }
 .form__input-label {
   padding-bottom: 0.5rem;
@@ -237,6 +241,16 @@ p {
   letter-spacing: 1px;
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 800;
+}
+.form__error-text {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
+  line-height: 1;
+  margin-top: 0.25rem;
+  color: #fd3572;
 }
 .form .textbox {
   padding: 0.75rem;

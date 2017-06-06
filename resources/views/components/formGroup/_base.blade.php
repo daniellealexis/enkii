@@ -1,4 +1,3 @@
-<div class="form__group">
+<div class="form__group{{ !empty($hasError) ? ' form__group--has-error' : '' }}">
     @yield('input')
-    {{-- TO-DO: Add errors to base template? --}}
 </div>
