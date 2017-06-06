@@ -17,11 +17,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/**
- * User Routes
- */
-
-Route::post('account', [
-    'before' => 'auth|csrf',
-    'uses' => 'AccountController@updateAccount',
-]);

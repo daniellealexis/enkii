@@ -8,7 +8,7 @@
 -->
 <main class="account horizontal-center">
     <section class="form form--thin">
-        {{ Form::model(Auth::user(), ['url' => 'api/account']) }}
+        {{ Form::model(Auth::user(), ['url' => '/account/update']) }}
             <h1 class="form__header">{{ $name }}</h1>
             {{ Form::text('name', null, ['class' => 'textbox']) }}
 

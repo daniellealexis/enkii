@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Redirect;
 use Illuminate\Http\Request;
 use App\Http\User;
 use Illuminate\Support\Facades\Validator;
@@ -49,12 +50,17 @@ class AccountController extends Controller
 
     public function updateAccount(Request $request)
     {
-        $userId = Auth::user()->id;
+        if (!Auth::check()) {
+            // redirect to not allowed
+        }
+
+        $user = Auth::user();
 
         // Add validation
         // https://laravel.io/forum/06-05-2014-updating-data-to-database
 
-        User::where('id', $userId)->update(Input::all());
+        $user->update($request->all());
+        $user->save();
 
         return Redirect::route('account')->with('message', 'You have successfully updated your account');
     }
