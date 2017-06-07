@@ -55,13 +55,18 @@ class AccountController extends Controller
         }
 
         $user = Auth::user();
+        $validator = $user->createValidator();
 
         // Add validation
         // https://laravel.io/forum/06-05-2014-updating-data-to-database
+        if ($validator->passes()) {
+            $user->update($request->all());
+            $user->save();
 
-        $user->update($request->all());
-        $user->save();
-
-        return Redirect::route('account')->with('message', 'You have successfully updated your account');
+            return Redirect::route('account')->with('message', 'You have successfully updated your account');
+        } else {
+            // reload view with errors
+            return Redirect::route('account')->withErrors($validator);
+        }
     }
 }
