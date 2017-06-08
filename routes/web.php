@@ -11,14 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages/home');
-});
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+
+/**
+ * Account Routes
+ */
+Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+    Route::get('', 'AccountController@index')->name('account');
+
+    Route::post('update', [
+        'before' => 'csrf',
+        'uses' => 'AccountController@updateAccount',
+    ]);
+});
