@@ -59,7 +59,6 @@ class AccountController extends Controller
 
         $requestData = [
             'name' => $request->get('name'),
-            'email' => $request->get('email'),
             'job_title' => $request->get('job_title'),
             'twitter_handle' => $request->get('twitter_handle'),
         ];
@@ -70,8 +69,7 @@ class AccountController extends Controller
             $user->update($requestData);
             $user->save();
 
-            Session::flash('message', 'You have successfully updated your account');
-            return Redirect::route('account');
+            return Redirect::route('account')->with('flashMessage', 'You have successfully updated your account');
         } else {
             // Reload view with errors
             return Redirect::route('account')->withErrors($validator);

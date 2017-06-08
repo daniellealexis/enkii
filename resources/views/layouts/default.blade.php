@@ -4,8 +4,8 @@
         @include('includes.head')
     </head>
     <body>
-        @if(Session::has('message'))
-            @include('includes.flashMessage', ['message' => Session::get('message')])
+        @if(Session::has('flashMessage'))
+            @include('includes.flashMessage', ['message' => Session::get('flashMessage')])
         @endif
         @include('includes.header')
         @yield('content')
