@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Redirect;
+use Session;
 use Illuminate\Http\Request;
 use App\Http\User;
 use Illuminate\Support\Facades\Validator;
@@ -51,21 +52,28 @@ class AccountController extends Controller
     public function updateAccount(Request $request)
     {
         if (!Auth::check()) {
-            // redirect to not allowed
+            abort(403);
         }
 
         $user = Auth::user();
-        $validator = $user->createValidator();
 
-        // Add validation
-        // https://laravel.io/forum/06-05-2014-updating-data-to-database
+        $requestData = [
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'job_title' => $request->get('job_title'),
+            'twitter_handle' => $request->get('twitter_handle'),
+        ];
+
+        $validator = $user->createValidator($requestData);
+
         if ($validator->passes()) {
-            $user->update($request->all());
+            $user->update($requestData);
             $user->save();
 
-            return Redirect::route('account')->with('message', 'You have successfully updated your account');
+            Session::flash('message', 'You have successfully updated your account');
+            return Redirect::route('account');
         } else {
-            // reload view with errors
+            // Reload view with errors
             return Redirect::route('account')->withErrors($validator);
         }
     }

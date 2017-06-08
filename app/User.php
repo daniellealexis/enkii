@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Authenticatable
 {
@@ -16,7 +16,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'twitter_handle', 'job_title',
+        'name', 'email', 'twitter_handle', 'job_title',
+    ];
+
+    private $validationRules = [
+        'name' => 'string',
+        'email' => 'email|unique:users',
+        'twitter_handle' => 'nullable|string|max:15',
+        'job_title' => 'nullable|string|max:50',
     ];
 
     /**
@@ -28,16 +35,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    private $validationRules = [
-        'name' => '',
-        'email' => '',
-        'password' => '',
-        'twitter_handle' => '',
-        'job_title' => '',
-    ];
-
     public function createValidator($data)
     {
-        return new Validator($data, $this->rules);
+        return Validator::make($data, $this->validationRules);
     }
 }
