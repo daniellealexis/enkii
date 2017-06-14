@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 
+// "/controller/action"
+
 /**
  * Account Routes
  */
