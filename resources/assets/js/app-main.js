@@ -4,3 +4,12 @@
  **/
 
 require('./bootstrap');
+
+import {
+    //getInstance as getEridu,
+    initializeOnWindow as initializeEridu,
+} from './eridu';
+
+document.addEventListener("DOMContentLoaded", function() {
+    initializeEridu();
+});

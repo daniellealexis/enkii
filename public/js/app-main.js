@@ -63,19 +63,28 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eridu__ = __webpack_require__(8);
 
 /**
  * First we will load all of this project's JavaScript dependencies
  **/
 
-__webpack_require__(2);
+__webpack_require__(7);
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__eridu__["a" /* initializeOnWindow */])();
+});
 
 /***/ }),
 /* 1 */
@@ -87,43 +96,15 @@ __webpack_require__(2);
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(0);
+module.exports = __webpack_require__(1);
 
-window._ = __webpack_require__(3);
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-// window.axios = require('axios');
-
-// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
-// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
 
 /***/ }),
-/* 3 */
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -17212,10 +17193,119 @@ window._ = __webpack_require__(3);
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(10)(module)))
 
 /***/ }),
-/* 4 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+window._ = __webpack_require__(6);
+
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+// window.axios = require('axios');
+
+// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+
+// import Echo from 'laravel-echo'
+
+// window.Pusher = require('pusher-js');
+
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: 'your-pusher-key'
+// });
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* unused harmony export getInstance */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initializeOnWindow; });
+
+
+var Eridu = function () {
+    var store = {};
+
+    function set(key, value) {
+        if (typeof key === 'string') {
+            store[key] = value;
+        } else if (typeof key === 'undefined') {
+            // If undefined, don't set anything
+        } else if (key !== null && key === Object(key)) {
+            // If object, extend on store
+            _.extend(store, key);
+        } else {
+            throw new Error('Eridu Error: Only string keys or objects allowed in set');
+        }
+    };
+
+    function get() {
+        var dataKey = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+        typeof dataKey === 'string' || (dataKey = '');
+        return store[dataKey];
+    };
+
+    function has() {
+        var dataKey = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+        var data = get(dataKey);
+        return !!data;
+    };
+
+    return {
+        get: get,
+        has: has,
+        set: set
+    };
+}();
+
+function getInstance() {
+    return Eridu;
+}
+
+function initializeOnWindow() {
+    var eridu = getInstance();
+
+    // Set data on the window to instance
+    eridu.set(window.eridu);
+
+    // Set instance on window
+    window.Eridu = eridu;
+
+    // Remove data from backend from window
+    delete window.eridu;
+
+    // Return instance
+    return eridu;
+}
+
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 var g;
@@ -17242,7 +17332,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 5 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -17267,14 +17357,6 @@ module.exports = function(module) {
 	}
 	return module;
 };
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(0);
-module.exports = __webpack_require__(1);
 
 
 /***/ })
