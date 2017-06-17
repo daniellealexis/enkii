@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Redirect;
 use Session;
+use JavaScript;
 use Illuminate\Http\Request;
 use App\Http\User;
 use Illuminate\Support\Facades\Validator;
@@ -40,6 +41,11 @@ class AccountController extends Controller
     private function getDataForRender()
     {
         $user = Auth::user();
+
+        JavaScript::put([
+            'working' => true,
+            'user' => $user,
+        ]);
 
         return [
             'name'=>$user['name'],

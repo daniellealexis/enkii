@@ -14,6 +14,4 @@
         {{ Form::close() }}
     </section>
 </main>
-
-
 @endsection
