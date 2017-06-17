@@ -82,8 +82,12 @@ __webpack_require__(7);
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__eridu__["a" /* initializeOnWindow */])();
+document.addEventListener('DOMContentLoaded', function () {
+    var eridu = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__eridu__["a" /* initializeOnWindow */])();
+
+    if (eridu.has('flash')) {
+        // initialize flash manager
+    }
 });
 
 /***/ }),

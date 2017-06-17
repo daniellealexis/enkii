@@ -6,10 +6,13 @@
 require('./bootstrap');
 
 import {
-    //getInstance as getEridu,
     initializeOnWindow as initializeEridu,
 } from './eridu';
 
-document.addEventListener("DOMContentLoaded", function() {
-    initializeEridu();
+document.addEventListener('DOMContentLoaded', function() {
+    const eridu = initializeEridu();
+
+    if (eridu.has('flash')) {
+        // initialize flash manager
+    }
 });
