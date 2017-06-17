@@ -17248,31 +17248,30 @@ window._ = __webpack_require__(6);
 var Eridu = function () {
     var store = {};
 
-    function set(key, value) {
-        if (typeof key === 'string') {
-            store[key] = value;
-        } else if (typeof key === 'undefined') {
-            // If undefined, don't set anything
-        } else if (key !== null && key === Object(key)) {
-            // If object, extend on store
-            _.extend(store, key);
-        } else {
-            throw new Error('Eridu Error: Only string keys or objects allowed in set');
-        }
-    };
-
     function get() {
         var dataKey = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        var defaultValue = arguments[1];
 
-        typeof dataKey === 'string' || (dataKey = '');
-        return store[dataKey];
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["get"])(store, dataKey, defaultValue);
     };
 
     function has() {
         var dataKey = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-        var data = get(dataKey);
-        return !!data;
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["has"])(store, dataKey);
+    };
+
+    function set(key, value) {
+        if (typeof key === 'string' || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["isArray"])(key)) {
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["set"])(store, key, value);
+        } else if (typeof key === 'undefined') {
+            // If undefined, don't set anything
+        } else if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["isPlainObject"])(key)) {
+            // If object, extend on store
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["extend"])(store, key);
+        } else {
+            throw new Error('Eridu Error: Only string keys, arrays, or objects allowed in set');
+        }
     };
 
     return {
@@ -17301,6 +17300,8 @@ function initializeOnWindow() {
     // Return instance
     return eridu;
 }
+
+// remove JavaScript facade script from window? [.js-vars]
 
 
 

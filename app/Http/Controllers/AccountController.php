@@ -44,7 +44,7 @@ class AccountController extends Controller
 
         JavaScript::put([
             'working' => true,
-            'user' => $user['name'],
+            'user' => $user,
         ]);
 
         return [

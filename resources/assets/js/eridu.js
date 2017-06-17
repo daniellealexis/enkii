@@ -1,29 +1,34 @@
-import extend from 'lodash';
+import {
+    extend,
+    isPlainObject,
+    isArray,
+    get as _get,
+    has as _has,
+    set as _set,
+} from 'lodash';
 
-var Eridu = (function() {
-    var store = {};
+const Eridu = (function() {
+    const store = {};
 
-    function set(key, value) {
-        if (typeof key === 'string') {
-            store[key] = value;
-        } else if (typeof key === 'undefined') {
-            // If undefined, don't set anything
-        } else if (key !== null && key === Object(key) ) {
-            // If object, extend on store
-            _.extend(store, key);
-        } else {
-            throw new Error('Eridu Error: Only string keys or objects allowed in set');
-        }
-    };
-
-    function get(dataKey = '') {
-        typeof dataKey === 'string' || (dataKey = '');
-        return store[dataKey];
+    function get(dataKey = '', defaultValue) {
+        return _get(store, dataKey, defaultValue);
     };
 
     function has(dataKey = '') {
-        var data = get(dataKey);
-        return !!data;
+        return _has(store, dataKey);
+    };
+
+    function set(key, value) {
+        if (typeof key === 'string' || isArray(key)) {
+            _set(store, key, value);
+        } else if (typeof key === 'undefined') {
+            // If undefined, don't set anything
+        } else if (isPlainObject(key)) {
+            // If object, extend on store
+            extend(store, key);
+        } else {
+            throw new Error('Eridu Error: Only string keys, arrays, or objects allowed in set');
+        }
     };
 
     return {
@@ -52,6 +57,8 @@ function initializeOnWindow() {
     // Return instance
     return eridu;
 }
+
+// remove JavaScript facade script from window? [.js-vars]
 
 export {
     getInstance,
