@@ -194,18 +194,6 @@ p {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.alert-banner {
-  position: fixed;
-  width: 100%;
-  padding: 1rem;
-  text-align: center;
-  background-color: #1cfed1;
-}
-.alert-banner--text {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 800;
-}
 .error-page {
   text-align: center;
 }
@@ -216,6 +204,41 @@ p {
   font-size: 2rem;
   padding-left: 2rem;
   color: #1cfed1;
+}
+.flash-banner {
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  background-color: #1cfed1;
+  top: 0;
+  left: 0;
+}
+.flash-banner--text {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.flash-banner--close-icon {
+  color: #fff;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.flash-banner--close-icon:hover {
+  font-weight: 800;
+}
+.flash-banner--close-icon:active {
+  opacity: 0.75;
+}
+.flash-banner__error {
+  background-color: #fd3572;
 }
 .form--thin {
   min-width: 400px;

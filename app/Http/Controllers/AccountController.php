@@ -44,6 +44,15 @@ class AccountController extends Controller
 
         JavaScript::put(compact('user'));
 
+        $flashInfo = [
+            'flash' => [
+                'message' => 'Now you fucked up',
+                'type' => 'error',
+            ]
+        ];
+
+        JavaScript::put($flashInfo);
+
         return [
             'name'=>$user['name'],
             'email'=>$user['email'],
@@ -81,7 +90,7 @@ class AccountController extends Controller
 
             JavaScript::put($flashInfo);
 
-            return Redirect::route('account')->with($flashInfo);
+            return Redirect::route('account');
         } else {
             // Reload view with errors
             return Redirect::route('account')->withErrors($validator);
