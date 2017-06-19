@@ -3,7 +3,14 @@ const template = require('./flashBanner.hbs');
 class flashBanner {
     constructor(opts) {
         this.type = opts.type || 'default';
+
         this.message = opts.message || '';
+
+        this.duration = typeof opts.duration === 'number' ?
+            opts.duration : null;
+
+        this.removeBannerFromManager = typeof opts.removeBannerFromManager === 'function' ?
+            opts.removeBannerFromManager : () => {};
 
         this.el = this._createBannerElement();
     }
@@ -29,15 +36,15 @@ class flashBanner {
 
         // Bind close button
         closeIconEl.addEventListener('click', this.remove.bind(this));
-    }
 
-    hide() {
-        document.body.removeChild(this.el);
+        if (this.duration) {
+            setTimeout(this.remove.bind(this), this.duration);
+        }
     }
 
     remove() {
-        this.hide();
-        // destroy self
+        document.body.removeChild(this.el);
+        this.removeBannerFromManager();
     }
 }
 

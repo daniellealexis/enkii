@@ -4,10 +4,23 @@ function flashManager(opts) {
     const Eridu = opts.Eridu || window.Eridu;
     var activeBanner;
 
-    function _createFlashBanner(type, message, duration) {
-        let newBanner = new flashBanner({ type, message });
+    function _createFlashBanner(opts = {}) {
+        var newBanner;
+
+        opts.removeBannerFromManager = _unsetActiveBanner.bind(this);
+
+        newBanner = new flashBanner(opts);
+
+        if (activeBanner) {
+            activeBanner.removeBanner();
+        }
+
         activeBanner = newBanner;
         newBanner.show();
+    }
+
+    function _unsetActiveBanner() {
+        activeBanner = null;
     }
 
     /**
@@ -16,11 +29,8 @@ function flashManager(opts) {
      *             type [string]
      *             message [string]
      */
-    function createBanner(opts) {
-        var type = opts.type || 'default';
-        var message = opts.message || '';
-
-        _createFlashBanner(type, message);
+    function createBanner(opts = {}) {
+        _createFlashBanner(opts);
     }
 
     /**
@@ -29,7 +39,11 @@ function flashManager(opts) {
      * @param  {number} duration
      */
     function error(message, duration) {
-        _createFlashBanner('error', message);
+        _createFlashBanner({
+            type: 'error',
+            message,
+            duration
+        });
     }
 
     /**
@@ -37,13 +51,18 @@ function flashManager(opts) {
      * @param  {string} message
      * @param  {number} duration
      */
-    function success(message, duration) {
-        _createFlashBanner('success', message);
+    function success(message, duration = 5000) {
+        _createFlashBanner({
+            type: 'success',
+            message,
+            duration
+        });
     }
 
     function removeBanner() {
         if (activeBanner) {
             activeBanner.remove();
+            _unsetActiveBanner();
         }
     }
 
@@ -59,6 +78,9 @@ function flashManager(opts) {
         getActiveBanner,
     };
 };
+
+
+// Export singleton functions
 
 var _instance;
 

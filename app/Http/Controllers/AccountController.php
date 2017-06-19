@@ -44,15 +44,6 @@ class AccountController extends Controller
 
         JavaScript::put(compact('user'));
 
-        $flashInfo = [
-            'flash' => [
-                'message' => 'Now you fucked up',
-                'type' => 'error',
-            ]
-        ];
-
-        JavaScript::put($flashInfo);
-
         return [
             'name'=>$user['name'],
             'email'=>$user['email'],
@@ -82,6 +73,7 @@ class AccountController extends Controller
                 'flash' => [
                     'message' => 'You have successfully updated your account',
                     'type' => 'success',
+                    'duration' => 5000,
                 ]
             ];
 
