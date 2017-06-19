@@ -42,10 +42,7 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        JavaScript::put([
-            'working' => true,
-            'user' => $user,
-        ]);
+        JavaScript::put(compact('user'));
 
         return [
             'name'=>$user['name'],
@@ -72,10 +69,20 @@ class AccountController extends Controller
         $validator = $user->createValidator($requestData);
 
         if ($validator->passes()) {
+            $flashInfo = [
+                'flash' => [
+                    'message' => 'You have successfully updated your account',
+                    'type' => 'success',
+                    'duration' => 5000,
+                ]
+            ];
+
             $user->update($requestData);
             $user->save();
 
-            return Redirect::route('account')->with('flashMessage', 'You have successfully updated your account');
+            JavaScript::put($flashInfo);
+
+            return Redirect::route('account');
         } else {
             // Reload view with errors
             return Redirect::route('account')->withErrors($validator);
