@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use JavaScript;
 
 class DashboardController extends Controller
 {
@@ -23,6 +25,27 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+        if (Auth::check()) {
+            return view('pages.dashboard', $this->getDataForRender());
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
+    private function getDataForRender()
+    {
+        $user = Auth::user();
+
+        $dataForRender = [
+            'user' => [
+                'name'=>$user['name'],
+                'twitterHandle'=>$user['twitter_handle'],
+                'jobTitle'=>$user['job_title'],
+            ],
+        ];
+
+        JavaScript::put($dataForRender);
+
+        return $dataForRender;
     }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-<h4>{{ $message or '' }}</h4>
 <main class="account horizontal-center">
     <section class="form form--thin">
         {{ Form::model(Auth::user(), ['url' => '/account/update']) }}

@@ -80,12 +80,10 @@ class AccountController extends Controller
             $user->update($requestData);
             $user->save();
 
-            JavaScript::put($flashInfo);
-
-            return Redirect::route('account');
+            return Redirect::route('dashboard')->with($flashInfo);
         } else {
             // Reload view with errors
-            return Redirect::route('account')->withErrors($validator);
+            return Redirect::route('editAccount')->withErrors($validator);
         }
     }
 }
