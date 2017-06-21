@@ -24,7 +24,7 @@ Route::get('dashboard', 'DashboardController@index')->name('dashboard');
  * Account Routes
  */
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
-    Route::get('', 'AccountController@index')->name('account');
+    Route::get('edit', 'AccountController@index')->name('editAccount');
 
     Route::post('update', [
         'before' => 'csrf',
