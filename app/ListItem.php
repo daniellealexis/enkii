@@ -12,4 +12,26 @@ class ListItem extends Model
      * @var string
      */
     protected $table = 'list_items';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 'resource_url', 'description', 'image_url', 'index'
+    ];
+
+    private $validationRules = [
+        'title' => 'string|required_if:resource_url,null',
+        'resource_url' => 'nullable|url',
+        'description' => 'nullable|string',
+        'image_url' => 'nullable|url',
+        'index' => 'numeric'
+    ];
+
+    public function createValidator($data)
+    {
+        return Validator::make($data, $this->validationRules);
+    }
 }
