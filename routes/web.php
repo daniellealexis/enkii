@@ -11,18 +11,20 @@
 |
 */
 
+// User Authentication Routes
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// Patterns for parameters
+Route::pattern('id', '\d+');
+Route::pattern('username', '[a-z0-9_-]{3,16}');
 
+
+// Pages
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 
-// "/controller/action"
-
-/**
- * Account Routes
- */
+// Account Routes
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
     Route::get('edit', 'AccountController@index')->name('editAccount');
 
@@ -30,4 +32,12 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
         'before' => 'csrf',
         'uses' => 'AccountController@updateAccount',
     ]);
+});
+
+// List Routes
+Route::group(['prefix' => 'lists'], function () {
+    Route::get('{id}', 'ListController@getListById');
+    Route::post('new', 'ListController@createNewList');
+    Route::put('{id}', 'ListController@updateList');
+    Route::delete('{id}', 'ListController@deleteList');
 });

@@ -26,4 +26,25 @@ class Lists extends Model
     {
         return Validator::make($data, $this->validationRules);
     }
+
+    public function getById($id)
+    {
+        return this::find($id);
+    }
+
+    public function create()
+    {
+        // create new list row
+        // return id
+    }
+
+    public function updateList()
+    {
+
+    }
+
+    public function delete()
+    {
+        // Delete list and list items
+    }
 }
