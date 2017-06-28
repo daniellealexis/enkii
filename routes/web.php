@@ -35,9 +35,16 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 });
 
 // List Routes
-Route::group(['prefix' => 'lists'], function () {
-    Route::get('{id}', 'ListController@getListById');
-    Route::post('new', 'ListController@createNewList');
-    Route::put('{id}', 'ListController@updateList');
-    Route::delete('{id}', 'ListController@deleteList');
-});
+Route::resource('lists', 'ListController');
+
+/*
+Verb        URI                    Action          Route Name
+
+GET         /lists                 index           lists.index
+GET         /lists/create          create          lists.create
+POST        /lists                 store           lists.store
+GET         /lists/{id}            show            lists.show
+GET         /lists/{id}/edit       edit            lists.edit
+PUT/PATCH   /lists/{id}            update          lists.update
+DELETE      /lists/{id}            destroy         lists.destroy
+*/

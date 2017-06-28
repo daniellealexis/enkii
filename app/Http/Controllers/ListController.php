@@ -12,72 +12,145 @@ use App\Lists;
 use App\ListItem;
 use Illuminate\Support\Facades\Validator;
 
-// use user to get editable fields?
-
 class ListController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return 'cat rackham';
+        //
     }
 
-    public function createNewList()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
+        if (!Auth::check()) {
+            // redirect to login page
+            // flash that they need to have an account to do that
+        }
+
         $list = new Lists();
+
+        $list->user_id = Auth::user()->id;
+
         $list->save();
 
-        return $response()->json(
-            compact($list)
-        );
+        return redirect()->route('lists.edit', ['id' => $list->id]);
     }
 
-    public function getListById($id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $list = Lists::find($id);
-        $list['list_items'] = ListItem::where('list_id', $id);
-
-        return response()->json(
-            compact($list)
-        );
+        //
     }
 
-    public function updateList($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $user = Auth::user();
+        //
+    }
 
-        if (!Auth::check() || $this->_checkIfUserHasAccessToList($user->id, $id)) {
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        if (!$this->checkCurrentUserAccessToList($id)) {
             abort(403);
         }
+
+        $list = $this->getListWithListItems($id);
+
+        JavaScript::put(compact($list));
+
+        return view('pages.list-edit', $list);
     }
 
-    public function deleteList($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $user = Auth::user();
+        if (!$this->checkCurrentUserAccessToList($id)) {
+            abort(403);
+        }
 
-        if (!Auth::check() || $this->_checkIfUserHasAccessToList($user->id, $id)) {
+        // get list
+        // validate request info
+        // split out and save list items
+        // save list
+        // send back flash message
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        if (!$this->checkCurrentUserAccessToList($id)) {
             abort(403);
         }
 
         Lists::destroy($id);
+        // destroy list_items with list_id as well, unless laravel handles it?
+        // make it do that otherwise
 
         return response();
     }
 
+    public function getListWithListItems($id)
+    {
+        $list = Lists::find($id);
+        $list['list_items'] = ListItem::where('list_id', $id);
+        return $list;
+    }
+
+    /**
+     * Checks if the currently logged-in user has access to the list
+     *
+     * @param  int  $listId
+     * @return boolean
+     */
+    public function checkCurrentUserAccessToList($listId)
+    {
+        $user = Auth::user();
+        return (Auth::check() && $this->_checkIfUserHasAccessToList($user->id, $listId));
+    }
+
+    /**
+     * Checks if the user has access to the list
+     *
+     * @param  int  $userId
+     * @param  int  $listId
+     * @return boolean
+     */
     private function _checkIfUserHasAccessToList($userId, $listId)
     {
         $list = Lists::find($listId);
