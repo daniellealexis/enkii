@@ -64,7 +64,9 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        //
+        $list = $this->getListWithListItems($id);
+        JavaScript::put(compact($list));
+        return view('pages.list', $list);
     }
 
     /**
@@ -100,10 +102,18 @@ class ListController extends Controller
         }
 
         // get list
+        $list = Lists::find($id);
         // validate request info
+        $requestData = [
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+        ];
         // split out and save list items
         // save list
+        $list->update($requestData);
+        $list->save();
         // send back flash message
+        return redirect()->route('lists.show', ['id' => $list->id]);
     }
 
     /**
