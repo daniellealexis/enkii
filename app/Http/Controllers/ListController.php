@@ -103,12 +103,16 @@ class ListController extends Controller
 
         // get list
         $list = Lists::find($id);
+
         // validate request info
         $requestData = [
             'title' => $request->get('title'),
             'description' => $request->get('description'),
         ];
+
         // split out and save list items
+        $this->saveListItems($id, $request->get('list_items'));
+
         // save list
         $list->update($requestData);
         $list->save();
@@ -165,5 +169,38 @@ class ListController extends Controller
     {
         $list = Lists::find($listId);
         return ($list->user_id === $userId);
+    }
+
+    /**
+     * [saveListItems description]
+     * @param  int $listId    [description]
+     * @param  array  $listItems [description]
+     */
+    protected function saveListItems($listId, $listItems = [])
+    {
+        foreach ($listItems as $index => $listItem) {
+            $listItem['index'] = $index;
+            $listItem['list_id'] = $listId;
+
+            // A way to combine this action so less writes to DB??
+            if (!isset($listItem['id'])) {
+                $this->createListItem($listItem);
+            } else {
+                $this->saveListItem($listItem);
+            }
+        }
+    }
+
+    private function saveListItem($listItemData)
+    {
+        $listItem = ListItem::find($listItemData['id']);
+        $listItem->update($listItemData);
+        $listItem->save();
+    }
+
+    private function createListItem($listItemData)
+    {
+        $listItem = new ListItem($listItemData);
+        $list->save();
     }
 }
