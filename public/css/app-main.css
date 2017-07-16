@@ -321,3 +321,27 @@ p {
   padding: 0 0.25rem;
   color: #020e21;
 }
+.list {
+  min-width: 100%;
+  padding: 0 1.5rem;
+  max-width: 1024px;
+  box-sizing: border-box;
+}
+.list__description {
+  padding: 0 0 2rem 1rem;
+}
+.list__list-items {
+  list-style-type: decimal;
+}
+.list__list-items--unordered {
+  list-style-type: circle;
+}
+.list-item {
+  margin: 1rem;
+}
+.list-item__title {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding-bottom: 0.25rem;
+}
