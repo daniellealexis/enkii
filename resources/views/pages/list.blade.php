@@ -6,7 +6,7 @@
         <h1 class="list__title">{{ $title }}</h1>
         <p class="list__description">{{ $description }}</p>
         <ol class="list__list-items">
-            @if (isset($listItems))
+            @if (isset($list_items) && !empty($list_items))
                 @foreach ($list_items as $listItem)
                     <li class="list-item">
                         <h3 class="list-item__title">{{ $listItem->title }}</h3>

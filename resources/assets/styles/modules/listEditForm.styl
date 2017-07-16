@@ -1,0 +1,25 @@
+.list-edit-form
+    width 100%
+    max-width $contentMaxWidth
+
+    .list-item
+        padding-bottom 2rem
+        position relative
+
+        &::before
+            content '•'
+            position absolute
+            top 0
+            left -4rem
+            font-size 16rem
+            color $highlight-color
+            line-height 20px
+
+    .list-items
+        padding-top 2rem
+
+        &__section-title
+            $headlineFontStyles()
+            font-size 1.5rem
+            padding-bottom 0.5rem
+

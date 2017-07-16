@@ -65,7 +65,6 @@ class ListController extends Controller
     public function show($id)
     {
         $list = $this->getListWithListItems($id);
-        $list['listItems'] = $list['list_items']->toArray();
         JavaScript::put(compact($list));
         return view('pages.list', $list);
     }
@@ -83,9 +82,7 @@ class ListController extends Controller
         }
 
         $list = $this->getListWithListItems($id);
-
         JavaScript::put(compact($list));
-
         return view('pages.list-edit', $list);
     }
 
@@ -173,56 +170,31 @@ class ListController extends Controller
     }
 
     /**
-     * [saveListItems description]
-     * @param  model  $list   [description]
-     * @param  array  $listItems [description]
+     * Saves all list items for the passed in list. If a list item doesn't
+     * exist, it will create a new one and associate it with the list.
+     * Sets index on the list items by the order they're in in $listItemsData
+     * @param  model  $list   list model
+     * @param  array  $listItems  array of arrays of list item data
      */
     protected function saveListItems($list, $listItemsData = [])
     {
-        if (is_null($listItemsData)) {
-            //return;
-            $listItemsData = [
-                [
-                    'id' => 1,
-                    'title' => 'Updating id 1??',
-                    'resource_url' => 'www.google.com',
-                    'description' => 'Google is pretty great',
-                ],
-                [
-                    'id' => 2,
-                    'title' => 'Updating Glorious test 2??',
-                    'resource_url' => 'www.google.com/maps',
-                    'description' => 'Google maps is pretty great',
-                ],
-                [
-                    'id' => 3,
-                    'title' => 'Guess this is 3',
-                    'resource_url' => 'www.google.com/maps',
-                    'description' => 'I sure hope this works :D',
-                ],
-            ];
+        if (empty($listItemsData)) {
+            return;
         }
 
         $listItemsRelation = $list->listItems();
+        $existingListItems = $listItemsRelation->getEager();
         $listItemInstancesToSave = [];
-
-        //var_dump($listItemsRelation->getResults());
 
         foreach ($listItemsData as $index => $listItemData) {
             $listItemData['index'] = $index;
 
-            var_dump($listItemData);
-
-            // A way to combine this action so less writes to DB??
             if (!isset($listItemData['id'])) {
                 $listItemInstancesToSave[] = new ListItem($listItemData);
             } else {
-                $existingListItem = $listItemsRelation
-                    ->where('id', $listItemData['id'])
-                    ->get();
-
-                var_dump($listItemData['id']);
-                var_dump($existingListItem);
+                $existingListItem = $existingListItems
+                    ->where('id', (int)$listItemData['id'])
+                    ->first();
 
                 if (!empty($existingListItem)) {
                     $existingListItem->fill($listItemData);
@@ -231,21 +203,6 @@ class ListController extends Controller
             }
         }
 
-        exit;
-
         $listItemsRelation->saveMany($listItemInstancesToSave);
-    }
-
-    private function saveListItem($listItemData)
-    {
-        $listItem = ListItem::find($listItemData['id']);
-        $listItem->update($listItemData);
-        $listItem->save();
-    }
-
-    private function createListItem($listItemData)
-    {
-        $listItem = new ListItem($listItemData);
-        $list->save();
     }
 }

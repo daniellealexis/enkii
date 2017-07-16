@@ -35,11 +35,20 @@
         margin-top 0.25rem
         color $error-color
 
-    .textbox
+    .textbox,
+    .textarea
         padding 0.75rem
         font-size 1rem
         width 100%
         box-sizing border-box
+        border 1px solid $grey-color
+        outline none
+        transition border-color 0.15s
+
+        &:hover
+            border-color darken($highlight-color, 30%)
+        &:focus
+            border-color $highlight-color
 
     .checkbox
         font-size 0.85rem
