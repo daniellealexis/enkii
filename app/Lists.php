@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ListItem;
 use Illuminate\Database\Eloquent\Model;
 
 class Lists extends Model
@@ -32,6 +33,11 @@ class Lists extends Model
         return this::find($id);
     }
 
+    public function listItems()
+    {
+        return $this->hasMany('App\ListItem', 'list_id');
+    }
+
     public function create()
     {
         // create new list row
@@ -40,7 +46,7 @@ class Lists extends Model
 
     public function updateList()
     {
-
+        // nyeh
     }
 
     public function delete()

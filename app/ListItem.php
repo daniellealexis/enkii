@@ -34,4 +34,9 @@ class ListItem extends Model
     {
         return Validator::make($data, $this->validationRules);
     }
+
+    public function parentList()
+    {
+        return $this->belongsTo('App\Lists', 'list_id');
+    }
 }

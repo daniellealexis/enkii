@@ -275,11 +275,23 @@ p {
   margin-top: 0.25rem;
   color: #fd3572;
 }
-.form .textbox {
+.form .textbox,
+.form .textarea {
   padding: 0.75rem;
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form .textbox:hover,
+.form .textarea:hover {
+  border-color: #01c59e;
+}
+.form .textbox:focus,
+.form .textarea:focus {
+  border-color: #1cfed1;
 }
 .form .checkbox {
   font-size: 0.85rem;
@@ -320,4 +332,54 @@ p {
   display: inline-block;
   padding: 0 0.25rem;
   color: #020e21;
+}
+.list {
+  min-width: 100%;
+  padding: 0 1.5rem;
+  max-width: 1024px;
+  box-sizing: border-box;
+}
+.list__description {
+  padding: 0 0 2rem 1rem;
+}
+.list__list-items {
+  list-style-type: decimal;
+}
+.list__list-items--unordered {
+  list-style-type: circle;
+}
+.list-item {
+  margin: 1rem;
+}
+.list-item__title {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding-bottom: 0.25rem;
+}
+.list-edit-form {
+  width: 100%;
+  max-width: 1024px;
+}
+.list-edit-form .list-item {
+  padding-bottom: 2rem;
+  position: relative;
+}
+.list-edit-form .list-item::before {
+  content: '•';
+  position: absolute;
+  top: 0;
+  left: -4rem;
+  font-size: 16rem;
+  color: #1cfed1;
+  line-height: 20px;
+}
+.list-edit-form .list-items {
+  padding-top: 2rem;
+}
+.list-edit-form .list-items__section-title {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
 }

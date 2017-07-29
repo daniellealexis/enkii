@@ -82,9 +82,7 @@ class ListController extends Controller
         }
 
         $list = $this->getListWithListItems($id);
-
         JavaScript::put(compact($list));
-
         return view('pages.list-edit', $list);
     }
 
@@ -103,12 +101,16 @@ class ListController extends Controller
 
         // get list
         $list = Lists::find($id);
+
         // validate request info
         $requestData = [
             'title' => $request->get('title'),
             'description' => $request->get('description'),
         ];
+
         // split out and save list items
+        $this->saveListItems($list, $request->get('list_items'));
+
         // save list
         $list->update($requestData);
         $list->save();
@@ -138,7 +140,7 @@ class ListController extends Controller
     public function getListWithListItems($id)
     {
         $list = Lists::find($id);
-        $list['list_items'] = ListItem::where('list_id', $id);
+        $list['list_items'] = $list->listItems()->getResults();
         return $list;
     }
 
@@ -165,5 +167,42 @@ class ListController extends Controller
     {
         $list = Lists::find($listId);
         return ($list->user_id === $userId);
+    }
+
+    /**
+     * Saves all list items for the passed in list. If a list item doesn't
+     * exist, it will create a new one and associate it with the list.
+     * Sets index on the list items by the order they're in in $listItemsData
+     * @param  model  $list   list model
+     * @param  array  $listItems  array of arrays of list item data
+     */
+    protected function saveListItems($list, $listItemsData = [])
+    {
+        if (empty($listItemsData)) {
+            return;
+        }
+
+        $listItemsRelation = $list->listItems();
+        $existingListItems = $listItemsRelation->getEager();
+        $listItemInstancesToSave = [];
+
+        foreach ($listItemsData as $index => $listItemData) {
+            $listItemData['index'] = $index;
+
+            if (!isset($listItemData['id'])) {
+                $listItemInstancesToSave[] = new ListItem($listItemData);
+            } else {
+                $existingListItem = $existingListItems
+                    ->where('id', (int)$listItemData['id'])
+                    ->first();
+
+                if (!empty($existingListItem)) {
+                    $existingListItem->fill($listItemData);
+                    $listItemInstancesToSave[] = $existingListItem;
+                }
+            }
+        }
+
+        $listItemsRelation->saveMany($listItemInstancesToSave);
     }
 }
