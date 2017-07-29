@@ -11,19 +11,6 @@ const { mix } = require('laravel-mix');
  | https://laravel.com/docs/5.4/mix
  */
 
-
-// Handlebars Templates
-mix.webpackConfig({
-    module: {
-        rules: [
-            {
-                test: /\.hbs$/,
-                loader: "handlebars-loader",
-            },
-        ],
-    },
-});
-
 // JavaScript
 mix.js('resources/assets/js/app-main.js', 'public/js');
     //.extract(['vendors'])
@@ -32,3 +19,24 @@ mix.js('resources/assets/js/app-main.js', 'public/js');
 mix.stylus('resources/assets/styles/app-main.styl', 'public/css');
 
 mix.browserSync('enkii.app');
+
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                // Handlebars Templates
+                test: /\.hbs$/,
+                loader: 'handlebars-loader',
+            },
+        ],
+        loaders: [
+            {
+                // Linting
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                enforce: 'post',
+            },
+        ]
+    },
+});
