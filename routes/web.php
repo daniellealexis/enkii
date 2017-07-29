@@ -11,18 +11,20 @@
 |
 */
 
+// User Authentication Routes
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// Patterns for parameters
+Route::pattern('id', '\d+');
+Route::pattern('username', '[a-z0-9_-]{3,16}');
 
+
+// Pages
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 
-// "/controller/action"
-
-/**
- * Account Routes
- */
+// Account Routes
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
     Route::get('edit', 'AccountController@index')->name('editAccount');
 
@@ -31,3 +33,18 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
         'uses' => 'AccountController@updateAccount',
     ]);
 });
+
+// List Routes
+Route::resource('lists', 'ListController');
+
+/*
+Verb        URI                    Action          Route Name
+
+GET         /lists                 index           lists.index
+GET         /lists/create          create          lists.create
+POST        /lists                 store           lists.store
+GET         /lists/{id}            show            lists.show
+GET         /lists/{id}/edit       edit            lists.edit
+PUT/PATCH   /lists/{id}            update          lists.update
+DELETE      /lists/{id}            destroy         lists.destroy
+*/

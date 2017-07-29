@@ -16,4 +16,5 @@
         <h2>Your Lists</h2>
     </div>
 </main>
+@include('components.createListButton')
 @endsection
