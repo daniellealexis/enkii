@@ -16,14 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'twitter_handle', 'job_title',
-    ];
-
-    private $validationRules = [
-        'name' => 'string',
-        'email' => 'email|unique:users',
-        'twitter_handle' => 'nullable|string|max:15',
-        'job_title' => 'nullable|string|max:50',
+        'name', 'email', 'twitter_handle', 'job_title', 'password',
     ];
 
     /**
@@ -33,6 +26,13 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    private $validationRules = [
+        'name' => 'string',
+        'email' => 'email|unique:users',
+        'twitter_handle' => 'nullable|string|max:15',
+        'job_title' => 'nullable|string|max:50',
     ];
 
     public function createValidator($data)
