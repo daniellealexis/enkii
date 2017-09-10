@@ -25,6 +25,6 @@
   "dependencies": {
     "handlebars": "^4.0.10",
     "handlebars-loader": "^1.5.0",
-    "laravel-mix": "0.*",
+    "laravel-mix": "0.*"
   }
 }

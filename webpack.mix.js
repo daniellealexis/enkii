@@ -33,9 +33,10 @@ mix.webpackConfig({
             {
                 // Linting
                 test: /\.js$/,
-                exclude: /node_modules/,
+                include: /resources\/assets\/js/,
+                // exclude: /node_modules/,
                 loader: 'eslint-loader',
-                enforce: 'post',
+                //enforce: 'post',
             },
         ]
     },
