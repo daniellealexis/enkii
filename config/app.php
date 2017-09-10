@@ -181,6 +181,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\CustomHtmlServiceProvider::class,
+
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
     ],
 
