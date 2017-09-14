@@ -23,6 +23,16 @@ class Lists extends Model
         'type' => 'string|in:ol,ul'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Cascade delete related models
+        static::deleting(function ($lists) {
+            $lists->listItems()->delete();
+        });
+    }
+
     public function createValidator($data)
     {
         return Validator::make($data, $this->validationRules);
