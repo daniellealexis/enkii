@@ -36,10 +36,7 @@ class AddUserTwitterAndJobTitle extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            if (
-                Schema::hasColumn('users', 'twitter_handle') &&
-                Schema::hasColumn('users', 'job_title')
-            ) {
+            if (Schema::hasColumns('users', ['twitter_handle', 'job_title'])) {
                 $table->dropColumn(['twitter_handle', 'job_title']);
             }
         });
