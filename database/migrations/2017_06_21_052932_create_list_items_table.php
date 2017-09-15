@@ -36,8 +36,6 @@ class CreateListItemsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('list_items')) {
-            Schema::drop('list_items');
-        }
+        Schema::dropIfExists('list_items');
     }
 }

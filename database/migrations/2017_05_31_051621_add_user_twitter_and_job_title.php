@@ -14,12 +14,17 @@ class AddUserTwitterAndJobTitle extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('twitter_handle', 15)
-                ->nullable()
-                ->default(null);
-            $table->string('job_title', 50)
-                ->nullable()
-                ->default(null);
+            if (!Schema::hasColumn('users', 'twitter_handle')) {
+                $table->string('twitter_handle', 15)
+                    ->nullable()
+                    ->default(null);
+            }
+
+            if (!Schema::hasColumn('users', 'job_title')) {
+                $table->string('job_title', 50)
+                    ->nullable()
+                    ->default(null);
+            }
         });
     }
 
@@ -31,7 +36,12 @@ class AddUserTwitterAndJobTitle extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['twitter_handle', 'job_title']);
+            if (
+                Schema::hasColumn('users', 'twitter_handle') &&
+                Schema::hasColumn('users', 'job_title')
+            ) {
+                $table->dropColumn(['twitter_handle', 'job_title']);
+            }
         });
     }
 }
