@@ -13,19 +13,21 @@ class CreateListsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('lists')) {
-            Schema::create('lists', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->unsignedInteger('user_id');
-                $table->timestampsTz();
-                $table->text('title')->default('');
-                $table->mediumText('description')->default('');
-                $table->text('image_url')->nullable();
-                $table->enum('type', ['ol', 'ul'])->default('ul');
-
-                $table->foreign('user_id')->references('id')->on('users');
-            });
+        if (Schema::hasTable('lists')) {
+            return;
         }
+
+        Schema::create('lists', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger('user_id');
+            $table->timestampsTz();
+            $table->text('title')->default('');
+            $table->mediumText('description')->default('');
+            $table->text('image_url')->nullable();
+            $table->enum('type', ['ol', 'ul'])->default('ul');
+
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
@@ -35,8 +37,6 @@ class CreateListsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('lists')) {
-            Schema::drop('lists');
-        }
+        Schema::dropIfExists('lists');
     }
 }

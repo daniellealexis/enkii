@@ -13,20 +13,22 @@ class CreateListItemsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('list_items')) {
-            Schema::create('list_items', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->unsignedBigInteger('list_id');
-                $table->timestampsTz();
-                $table->text('title')->default('');
-                $table->text('resource_url')->nullable();
-                $table->mediumText('description')->default('');
-                $table->text('image_url')->nullable();
-                $table->unsignedTinyInteger('index');
-
-                $table->foreign('list_id')->references('id')->on('lists');
-            });
+        if (Schema::hasTable('list_items')) {
+            return;
         }
+
+        Schema::create('list_items', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('list_id');
+            $table->timestampsTz();
+            $table->text('title')->default('');
+            $table->text('resource_url')->nullable();
+            $table->mediumText('description')->default('');
+            $table->text('image_url')->nullable();
+            $table->unsignedTinyInteger('index');
+
+            $table->foreign('list_id')->references('id')->on('lists');
+        });
     }
 
     /**
@@ -36,8 +38,6 @@ class CreateListItemsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('list_items')) {
-            Schema::drop('list_items');
-        }
+        Schema::dropIfExists('list_items');
     }
 }
