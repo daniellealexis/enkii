@@ -7,9 +7,20 @@
         <form role="form" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
+            <div class="form__group{{ $errors->has('username') ? ' has-error' : '' }}">
+                <label for="username" class="form__input-label">Username</label>
+                <input id="username" type="text" class="textbox" name="username" value="{{ old('username') }}" autofocus required>
+
+                @if ($errors->has('username'))
+                    <span class="form__help-block">
+                        <strong>{{ $errors->first('username') }}</strong>
+                    </span>
+                @endif
+            </div>
+
             <div class="form__group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name" class="form__input-label">Name</label>
-                <input id="name" type="text" class="textbox" name="name" value="{{ old('name') }}" required autofocus>
+                <input id="name" type="text" class="textbox" name="name" value="{{ old('name') }}" required>
 
                 @if ($errors->has('name'))
                     <span class="form__help-block">

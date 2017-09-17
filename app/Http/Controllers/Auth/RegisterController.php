@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -47,11 +47,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'username.regex' => 'Username can only contain A-Z, 0-9, -, and _',
+            'password.regex' => 'Password must contain at least one lowercase, uppercase, number and special character.',
+        ];
+
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'username' => 'required|string|max:28|unique:users|regex:/[a-zA-Z0-9\-_]+/',
+            'name' => 'required|string|max:128',
+            'email' => 'required|string|email|max:254|unique:users',
+            'password' => 'required|string|min:8|confirmed|regex:/^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])).+$/',
+        ], $messages);
     }
 
     /**
@@ -63,6 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'username' => $data['username'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
