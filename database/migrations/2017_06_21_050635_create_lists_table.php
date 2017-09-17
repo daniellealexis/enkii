@@ -19,7 +19,7 @@ class CreateListsTable extends Migration
 
         Schema::create('lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestampsTz();
             $table->text('title')->default('');
             $table->mediumText('description')->default('');
