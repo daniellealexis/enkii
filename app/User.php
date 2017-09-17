@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'twitter_handle', 'job_title', 'password',
+        'username', 'name', 'email', 'twitter_handle', 'job_title', 'password',
     ];
 
     /**
@@ -33,6 +33,7 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     private $validationRules = [
+        'username' => 'string|unique:users',
         'name' => 'string',
         'email' => 'email|unique:users',
         'twitter_handle' => 'nullable|string|max:15',

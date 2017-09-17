@@ -7,7 +7,7 @@
         <form role="form" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 
-            {{ Form::formGroup_text('email', 'Email', old('email')) }}
+            {{ Form::formGroup_text('username', 'Username', old('username')) }}
             {{-- need to add 'required' and 'autofocus' attrs --}}
 
             {{ Form::formGroup_text('password', 'Password') }}
