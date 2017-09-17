@@ -35,6 +35,7 @@ class DashboardController extends Controller
     private function getDataForRender()
     {
         $user = Auth::user();
+        $lists = $user->lists()->getResults();
 
         $dataForRender = [
             'user' => [
@@ -42,6 +43,7 @@ class DashboardController extends Controller
                 'twitterHandle'=>$user['twitter_handle'],
                 'jobTitle'=>$user['job_title'],
             ],
+            'lists' => $lists->toArray(),
         ];
 
         JavaScript::put($dataForRender);

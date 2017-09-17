@@ -13,7 +13,17 @@
     </div>
     <hr>
     <div class="dashboard--lists">
-        <h2>Your Lists</h2>
+        <h2 class="list-card__container__headline">Your Lists</h2>
+        @if (!empty($lists))
+            <div class="list-card__container">
+                @foreach ($lists as $list)
+                    @include('components.listCard', ['list' => $list])
+                @endforeach
+            </div>
+        @else
+            <p>You currently don't have any lists yet.</p>
+        @endif
+        </div>
     </div>
 </main>
 @include('components.createListButton')
