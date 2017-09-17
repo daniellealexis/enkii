@@ -1,4 +1,4 @@
-<script src="{{ secure_asset('js/app-main.js') }}"></script>
+<script src="{{ asset('js/app-main.js') }}"></script>
 
 @if (session('flash'))
     <script>

@@ -4,5 +4,5 @@
 
 <title>{{ $title or config('app.name', 'Enkii') }}</title>
 
-<link href="{{ secure_asset('css/app-main.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/app-main.css') }}" rel="stylesheet" type="text/css">
 @stack('styles')
