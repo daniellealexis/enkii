@@ -357,6 +357,32 @@ p {
   font-size: 1.25rem;
   padding-bottom: 0.25rem;
 }
+.list-card {
+  border: 1px solid #aadfd7;
+  border-radius: 4px;
+  padding: 1rem;
+  width: 33%;
+  margin: 1rem;
+  text-decoration: none;
+}
+.list-card__title {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
+  color: #052556;
+}
+.list-card__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.list-card__container__headline {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  padding: 1rem;
+  font-size: 2rem;
+}
 .list-edit-form {
   width: 100%;
   max-width: 1024px;

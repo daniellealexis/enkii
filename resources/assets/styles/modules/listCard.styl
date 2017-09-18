@@ -1,0 +1,25 @@
+.list-card {
+    border: 1px solid $light-highlight;
+    border-radius: 4px;
+    padding: 1rem;
+    width: 33%;
+    margin: 1rem;
+    text-decoration: none;
+
+    &__title {
+        $headlineFontStyles();
+        font-size 1.25rem;
+        padding-bottom: 1rem;
+        color: $primary-color;
+    }
+}
+
+.list-card__container {
+    display: flex;
+}
+
+.list-card__container__headline {
+    $headlineFontStyles();
+    padding: 1rem;
+    font-size: 2rem;
+}
