@@ -169,6 +169,11 @@ p {
 .btn--primary:active {
   background-color: #01c59e;
 }
+.btn--fixed-bottom {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
 #main {
   height: 100vh;
   -webkit-box-align: center;
