@@ -65,8 +65,15 @@ class ListController extends Controller
     public function show($id)
     {
         $list = $this->getListWithListItems($id);
-        JavaScript::put(compact($list));
-        return view('pages.list', $list);
+
+        $data = [
+            'list' => $list,
+            'userCanEdit' => $this->checkCurrentUserAccessToList($id),
+        ];
+
+        JavaScript::put($data);
+
+        return view('pages.list', $data);
     }
 
     /**
