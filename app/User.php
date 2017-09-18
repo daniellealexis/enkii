@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
@@ -32,14 +31,6 @@ class User extends Authenticatable
 
     protected $dates = ['deleted_at'];
 
-    private $validationRules = [
-        'username' => 'string|unique:users',
-        'name' => 'string',
-        'email' => 'email|unique:users',
-        'twitter_handle' => 'nullable|string|max:15',
-        'job_title' => 'nullable|string|max:50',
-    ];
-
     protected static function boot()
     {
         parent::boot();
@@ -48,11 +39,6 @@ class User extends Authenticatable
         static::deleting(function ($user) {
             $user->lists()->delete();
         });
-    }
-
-    public function createValidator($data)
-    {
-        return Validator::make($data, $this->validationRules);
     }
 
     public function lists()

@@ -25,7 +25,7 @@ Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 
 // Account Routes
-Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+Route::prefix('account')->group(function () {
     Route::get('edit', 'AccountController@index')->name('editAccount');
 
     Route::post('update', [
