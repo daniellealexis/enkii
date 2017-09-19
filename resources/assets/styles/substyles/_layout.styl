@@ -1,0 +1,48 @@
+/*
+    Layout styles root file
+*/
+
+#main
+    height 100vh
+    align-items center
+    display flex
+    justify-content center
+
+.horizontal-center
+    min-height 100vh
+    align-items center
+    display flex
+    justify-content center
+
+// Visibly hides things used for screen-reader context
+.visibility-none {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+
+hr {
+    border-color: $highlight-color;
+    border-style: solid;
+    margin: 0;
+
+    &--thin {
+        border-width: 1px;
+    }
+}
+
+.container
+    &--large
+        padding $sizing-l;
+    &--medium
+        padding: $sizing-m;
+    &--small
+        padding: $sizing-s;
+    &--xs
+        padding: $sizing-xs;
+
+    &--bordered
+        border: $default-border;
+
+    &--flex
+        display: flex;

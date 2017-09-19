@@ -1,0 +1,56 @@
+$base-size = 18px;
+
+// Placeholder Product Colors
+
+$text-color = #020E21;
+$light-text-color = #FFF;
+$primary-color = #052556;
+$light-primary-color = #7B8DA2;
+$lighter-primary-color = #ABB5C0;
+$grey-color = #CCC;
+$highlight-color = #1CFED1;
+$light-highlight = #AADFD7;
+$dark-highlight = #0ACBB3;
+$background-color = #F4F3EE;
+
+$error-color = #FD3572;
+$border-color = $grey-color;
+$primary-button-color = $highlight-color;
+$secondary-button-color = $dark-highlight;
+
+// Fonts
+
+//https://fonts.google.com/featured/Five+Fresh+Headline+and+Body+Text+Pairings
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,800')
+
+$base-font-size = $base-size;
+
+$default-font = 'Work Sans', Arial, sans-serif;
+$default-font-weight = 300;
+$headline-font = $default-font;
+$headline-font-weight = 800;
+$default-line-height = 1.4;
+
+$defaultFontStyles()
+    font-family $default-font;
+    font-weight $default-font-weight;
+    line-height $default-line-height;
+    color: $text-color;
+
+$headlineFontStyles()
+    font-family $headline-font;
+    font-weight $headline-font-weight;
+    line-height $default-line-height;
+    color: $primary-color;
+
+// Layout
+
+$contentMaxWidth = 1024px;
+
+$sizing-l = 2 * $base-size;
+$sizing-m = $base-size;
+$sizing-s = 0.75 * $base-size;
+$sizing-xs = 0.5 * $base-size;
+
+$default-border = 1px solid $border-color;
+$default-border-radius = 3px;

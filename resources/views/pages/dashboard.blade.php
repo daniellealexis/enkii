@@ -1,9 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-<main class="dashboard">
+<main class="dashboard container--small">
     <h1 class="visibility-none">Dashboard</h1>
-    <div class="dashboard--user-data">
+    <div class="dashboard--user-data container--medium">
         <h2>{{ $user['name'] }}</h2>
         <h4>{{ $user['jobTitle'] }}</h4>
         <h4>{{ $user['twitterHandle'] }}</h4>
@@ -12,10 +12,10 @@
         </a>
     </div>
     <hr>
-    <div class="dashboard--lists">
-        <h2 class="list-card__container__headline">Your Lists</h2>
+    <div class="dashboard--lists container--medium">
+        <h3 class="list-card__container__headline">Your Lists</h3>
         @if (!empty($lists))
-            <div class="list-card__container">
+            <div class="list-card__container container--flex">
                 @foreach ($lists as $list)
                     @include('components.listCard', ['list' => $list])
                 @endforeach

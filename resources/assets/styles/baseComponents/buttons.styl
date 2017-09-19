@@ -1,0 +1,48 @@
+$baseButtonStyles()
+    padding $sizing-xs $sizing-l;
+    border 1px solid $primary-button-color;
+    border-radius $default-border-radius;
+    font-size $sizing-s;
+    background-color $primary-button-color
+    color $light-text-color;
+    cursor pointer
+    transition background-color, border-color, color 0.15s
+    outline none
+
+
+.btn {
+    &--primary {
+        $baseButtonStyles()
+
+        &:hover {
+            background-color: darken($primary-button-color, 20%);
+            border-color: darken($primary-button-color, 20%);
+        }
+        &:active {
+            background-color: darken($primary-button-color, 30%);
+            border-color: darken($primary-button-color, 20%);
+        }
+    }
+
+    &--secondary {
+        $baseButtonStyles()
+        background-color: transparent;
+        border-color: $primary-button-color;
+        color: $secondary-button-color;
+
+        &:hover {
+            color: darken($primary-button-color, 20%);
+            border-color: currentColor;
+        }
+        &:active {
+            color: darken($secondary-button-color, 30%);
+            border-color: currentColor;
+        }
+    }
+
+    &--fixed-bottom {
+        position: fixed;
+        bottom: $sizing-l;
+        right: $sizing-l;
+    }
+}
