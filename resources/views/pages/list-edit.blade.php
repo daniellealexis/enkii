@@ -1,5 +1,9 @@
 @extends('layouts/default')
 
+@push('scripts')
+    <script type="text/javascript" src="{{ asset('js/react-entry.js') }}"></script>
+@endpush
+
 @section('content')
 <main class="account horizontal-center">
     <section class="list-edit-form form">
@@ -22,6 +26,9 @@
             @endif
             {{ Form::formGroup_submit('Save List') }}
         {{ Form::close() }}
+        {{-- React App Root --}}
+        <div id="root"></div>
     </section>
+
 </main>
 @stop
