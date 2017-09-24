@@ -27,6 +27,7 @@ mix.webpackConfig({
 // JavaScript
 mix.js('resources/assets/js/app-main.js', 'public/js');
     //.extract(['vendors'])
+mix.react('resources/assets/js/react-entry.jsx', 'public/js');
 
 // Stylus/CSS
 mix.stylus('resources/assets/styles/app-main.styl', 'public/css');
