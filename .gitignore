@@ -10,3 +10,4 @@ Homestead.yaml
 npm-debug.log
 .env
 dani_notes.txt
+.DS_Store

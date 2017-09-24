@@ -5,7 +5,7 @@
     <section class="form form--thin">
         {{ Form::model($user, ['url' => '/account/update']) }}
             <h1 class="form__header">{{ $user->name }}</h1>
-            <h2>{{ $user->email }}</h2>
+            <h5>{{ $user->email }}</h5>
             {{ Form::formGroup_text('name', 'Name') }}
             {{ Form::formGroup_text('job_title', 'Job Title') }}
             {{ Form::formGroup_text('twitter_handle', 'Twitter') }}

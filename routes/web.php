@@ -22,6 +22,9 @@ Route::pattern('username', '[a-z0-9_-]{3,16}');
 // Pages
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('style-guide', function () {
+    return View::make('pages.style-guide');
+});
 
 
 // Account Routes

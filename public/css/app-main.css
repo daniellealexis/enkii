@@ -128,51 +128,65 @@ table {
 body {
   color: #020e21;
   background-color: #f4f3ee;
-  font-size: 18px;
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 300;
+  line-height: 1.4;
+  color: #020e21;
 }
 body,
 html {
+  font-size: 18px;
   height: 100%;
-}
-h1 {
-  color: #052556;
-  font-size: 3rem;
-  font-family: 'Work Sans', Arial, sans-serif;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1;
-}
-p {
-  color: #020e21;
-  line-height: 1.2;
 }
 .home--subheadline {
   color: #1cfed1;
   padding-left: 1.5rem;
 }
-.btn--primary {
-  padding: 0.5rem 2rem;
-  border: none;
-  border-radius: 3px;
+p {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  color: #020e21;
   font-size: 1rem;
-  background-color: #1cfed1;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.15s;
-  outline: none;
 }
-.btn--primary:hover {
-  background-color: #01e1b4;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #052556;
+  margin: 0;
 }
-.btn--primary:active {
-  background-color: #01c59e;
+h1 {
+  font-size: 3rem;
+  padding-bottom: $padding-m;
 }
-.btn--fixed-bottom {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+h2 {
+  font-size: 2.5rem;
+  padding-bottom: $padding-s;
+}
+h3 {
+  font-size: 2rem;
+  padding-bottom: $padding-s;
+}
+h4 {
+  font-size: 1.75rem;
+  padding-bottom: $padding-xs;
+  color: #020e21;
+}
+h5 {
+  font-size: 1.5rem;
+  padding-bottom: $padding-xs;
+  color: #020e21;
+}
+h6 {
+  font-size: 1rem;
+  padding-bottom: $padding-xs;
+  color: #020e21;
 }
 #main {
   height: 100vh;
@@ -198,6 +212,85 @@ p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.visibility-none {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+hr {
+  border-color: #1cfed1;
+  border-style: solid;
+  margin: 0;
+}
+hr--thin {
+  border-width: 1px;
+}
+.container--large {
+  padding: 36px;
+}
+.container--medium {
+  padding: 18px;
+}
+.container--small {
+  padding: 13.5px;
+}
+.container--xs {
+  padding: 9px;
+}
+.container--bordered {
+  border: 1px solid #ccc;
+}
+.container--flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.btn--primary {
+  padding: 9px 36px;
+  border: 1px solid #1cfed1;
+  border-radius: 3px;
+  font-size: 13.5px;
+  background-color: #1cfed1;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color, border-color, color 0.15s;
+  outline: none;
+}
+.btn--primary:hover {
+  background-color: #01e1b4;
+  border-color: #01e1b4;
+}
+.btn--primary:active {
+  background-color: #01c59e;
+  border-color: #01e1b4;
+}
+.btn--secondary {
+  padding: 9px 36px;
+  border: 1px solid #1cfed1;
+  border-radius: 3px;
+  font-size: 13.5px;
+  background-color: #1cfed1;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color, border-color, color 0.15s;
+  outline: none;
+  background-color: transparent;
+  border-color: #1cfed1;
+  color: #0acbb3;
+}
+.btn--secondary:hover {
+  color: #01e1b4;
+  border-color: currentColor;
+}
+.btn--secondary:active {
+  color: #078e7d;
+  border-color: currentColor;
+}
+.btn--fixed-bottom {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
 }
 .error-page {
   text-align: center;
@@ -269,6 +362,8 @@ p {
   letter-spacing: 1px;
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 800;
+  line-height: 1.4;
+  color: #052556;
 }
 .form__error-text {
   display: inline-block;
@@ -359,6 +454,8 @@ p {
 .list-item__title {
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 800;
+  line-height: 1.4;
+  color: #052556;
   font-size: 1.25rem;
   padding-bottom: 0.25rem;
 }
@@ -373,20 +470,11 @@ p {
 .list-card__title {
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 800;
+  line-height: 1.4;
+  color: #052556;
   font-size: 1.25rem;
   padding-bottom: 1rem;
   color: #052556;
-}
-.list-card__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.list-card__container__headline {
-  font-family: 'Work Sans', Arial, sans-serif;
-  font-weight: 800;
-  padding: 1rem;
-  font-size: 2rem;
 }
 .list-edit-form {
   width: 100%;
@@ -411,6 +499,8 @@ p {
 .list-edit-form .list-items__section-title {
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 800;
+  line-height: 1.4;
+  color: #052556;
   font-size: 1.5rem;
   padding-bottom: 0.5rem;
 }
