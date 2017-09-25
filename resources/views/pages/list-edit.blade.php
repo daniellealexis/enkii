@@ -1,7 +1,7 @@
 @extends('layouts/default')
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/react-entry.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/listEditor.js') }}"></script>
 @endpush
 
 @section('content')
