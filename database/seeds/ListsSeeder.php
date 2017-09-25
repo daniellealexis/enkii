@@ -17,9 +17,9 @@ class ListsSeeder extends Seeder
 
         foreach (User::all() as $user)
         {
-            $lists = factory(Lists::class, rand(10, 40))->make();
-            foreach ($lists as $list)
-                $user->lists()->save($list);
+            factory(Lists::class, rand(10, 40))->make()->each(function($l) use ($user) {
+                $user->lists()->save($l);
+            });
         }
     }
 }

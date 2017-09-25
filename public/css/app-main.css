@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,800);/*
     Main style file that includes the other root style files
 */
-
 html,
 body,
 div,
@@ -254,6 +253,7 @@ hr--thin {
   background-color: #1cfed1;
   color: #fff;
   cursor: pointer;
+  -webkit-transition: background-color, border-color, color 0.15s;
   transition: background-color, border-color, color 0.15s;
   outline: none;
 }
@@ -273,6 +273,7 @@ hr--thin {
   background-color: #1cfed1;
   color: #fff;
   cursor: pointer;
+  -webkit-transition: background-color, border-color, color 0.15s;
   transition: background-color, border-color, color 0.15s;
   outline: none;
   background-color: transparent;
@@ -305,7 +306,8 @@ hr--thin {
 }
 .flash-banner {
   position: fixed;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 100%;
   padding: 1rem;
   text-align: center;
@@ -356,7 +358,8 @@ hr--thin {
   padding-bottom: 0.5rem;
   display: block;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 1px;
@@ -380,9 +383,11 @@ hr--thin {
   padding: 0.75rem;
   font-size: 1rem;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border: 1px solid #ccc;
   outline: none;
+  -webkit-transition: border-color 0.15s;
   transition: border-color 0.15s;
 }
 .form .textbox:hover,
@@ -437,7 +442,8 @@ hr--thin {
   min-width: 100%;
   padding: 0 1.5rem;
   max-width: 1024px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .list__description {
   padding: 0 0 2rem 1rem;
@@ -485,7 +491,7 @@ hr--thin {
   position: relative;
 }
 .list-edit-form .list-item::before {
-  content: '•';
+  content: '\2022';
   position: absolute;
   top: 0;
   left: -4rem;
