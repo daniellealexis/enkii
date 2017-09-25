@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('twitter_handle', 15)->nullable()->default(null);
             $table->string('job_title', 50)->nullable()->default(null);
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestampsTz();
             $table->softDeletes();
         });
     }
