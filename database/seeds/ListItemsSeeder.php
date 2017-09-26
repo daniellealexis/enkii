@@ -17,9 +17,9 @@ class ListItemsSeeder extends Seeder
 
         foreach (Lists::all() as $list)
         {
-            $items = factory(ListItem::class, rand(10, 20))->make();
-            foreach ($items as $item)
-                $list->listItems()->save($item);
+            factory(ListItem::class, rand(10, 20))->make()->each(function($i) use ($list) {
+                $list->listItems()->save($i);
+            });
         }
     }
 }
