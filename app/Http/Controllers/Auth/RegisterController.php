@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'api_token' => hash('sha256',$data['username'] . random_bytes(512)),
         ]);
     }
 }

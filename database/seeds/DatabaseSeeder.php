@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(ListsSeeder::class);
         $this->call(ListItemsSeeder::class);
+        $this->call(ListCommentsSeeder::class);
 
         Model::reguard();
     }
