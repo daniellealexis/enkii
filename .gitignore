@@ -9,7 +9,11 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-npm-debug.log
 .env
 dani_notes.txt
 .DS_Store
+enkii.pem
+fabfile.pyc
+/public/css
+/public/js
+/public/mix-manifest.json
