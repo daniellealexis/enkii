@@ -14,10 +14,6 @@
 // User Authentication Routes
 Auth::routes();
 
-// Patterns for parameters
-Route::pattern('id', '\d+');
-Route::pattern('username', '[a-z0-9_-]{3,16}');
-
 
 // Pages
 Route::get('/', 'HomeController@index')->name('home');

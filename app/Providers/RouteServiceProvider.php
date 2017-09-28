@@ -23,7 +23,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //some patterns are identical to allow for meaningful route parameter names
+        //and readability... I add this comment because duplicate patterns drive me crazy
+        //and I need to remember it's for the greater good, code readability :P
+
+        Route::pattern('id', '\d+');
+        Route::pattern('username', '[a-z0-9_-]{3,16}');
+        Route::pattern('comment', '\d+');
+        Route::pattern('list', '\d+');
 
         parent::boot();
     }
