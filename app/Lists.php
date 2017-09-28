@@ -30,6 +30,7 @@ class Lists extends Model
         // Cascade delete related models
         static::deleting(function ($lists) {
             $lists->listItems()->delete();
+            $lists->comments()->delete();
         });
     }
 
@@ -46,6 +47,11 @@ class Lists extends Model
     public function listItems()
     {
         return $this->hasMany('App\ListItem', 'list_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\ListComment', 'list_id');
     }
 
     public function create()

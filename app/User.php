@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'email', 'twitter_handle', 'job_title', 'password',
+        'username', 'name', 'email', 'twitter_handle', 'job_title', 'password', 'api_token',
     ];
 
     /**
@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token',
     ];
 
     protected $dates = ['deleted_at'];
@@ -40,11 +40,17 @@ class User extends Authenticatable
         // Cascade delete related models
         static::deleting(function ($user) {
             $user->lists()->delete();
+            $user->comments()->delete();
         });
     }
 
     public function lists()
     {
         return $this->hasMany('App\Lists');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\ListComments');
     }
 }
