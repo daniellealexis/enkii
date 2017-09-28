@@ -184,6 +184,7 @@ return [
         App\Providers\CustomHtmlServiceProvider::class,
 
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*

@@ -61,7 +61,8 @@ excludes = (
     './storage/framework/sessions/*',
     './storage/framework/testing/*',
     './storage/framework/views/*',
-    './storage/logs/*'
+    './storage/logs/*',
+    './postman_token.txt'
 )
 
 def _check_filter(filter, full_path):
@@ -173,3 +174,13 @@ def deploy(type='prod', do_migrate=False):
         run('sudo composer install --no-dev --optimize-autoloader')
         if do_migrate:
             run('php artisan migrate')
+
+def init():
+    """
+    Reset database, initialize passport and seed the new database
+    This will produce a postman_token.txt file containing the admin user token
+    """
+    local('php artisan db:drop');
+    local('php artisan migrate');
+    local('php artisan passport:install');
+    local('php artisan db:seed');

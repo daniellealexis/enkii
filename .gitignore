@@ -17,3 +17,4 @@ fabfile.pyc
 /public/css
 /public/js
 /public/mix-manifest.json
+/postman_token.txt
