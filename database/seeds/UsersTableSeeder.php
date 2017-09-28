@@ -19,7 +19,12 @@ class UsersTableSeeder extends Seeder
             'name' => 'Administrator',
             'username' => 'admin',
             'email' => 'admin@enkii.com',
-        ]);
+        ])->each(function($user) {
+            $token = $user->createToken('postman')->accessToken;
+            $fh = fopen('postman_token.txt', 'w');
+            fwrite($fh, $token);
+            fclose($fh);
+        });
 
         factory(User::class, rand(10, 20))->create();
     }
