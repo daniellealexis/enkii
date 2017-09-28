@@ -176,6 +176,10 @@ def deploy(type='prod', do_migrate=False):
             run('php artisan migrate')
 
 def init():
+    """
+    Reset database, initialize passport and seed the new database
+    This will produce a postman_token.txt file containing the admin user token
+    """
     local('php artisan db:drop');
     local('php artisan migrate');
     local('php artisan passport:install');
