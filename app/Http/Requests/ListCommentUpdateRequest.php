@@ -18,10 +18,7 @@ class ListCommentUpdateRequest extends FormRequest
         if (!Auth::check())
             return false;
 
-        $id = $this->route('comment');
-
-        //TODO: look into using Gates with this instead
-        $comment = ListComment::where('id', $id)->firstOrFail();
+        $comment = $this->route('comment');
         if ($comment->user_id != Auth::id())
             return false;
 

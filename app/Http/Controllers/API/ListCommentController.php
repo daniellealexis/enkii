@@ -25,39 +25,34 @@ class ListCommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \App\ListComment[]
+     * @param  \App\Lists $list
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index($listId)
+    public function index(Lists $list)
     {
-        return ListComment::with('commentOwner:id,username')
-            ->where('list_id', $listId)
-            ->get();
+        return $list->comments()->with('commentOwner:id,username')->get();
     }
 
     /**
      * Get ListComment by id.
      *
-     * @param  int  $commentId
+     * @param  \App\ListComment  $comment
      * @return \App\ListComment
      */
-    public function getComment($commentId)
+    public function getComment(ListComment $comment)
     {
-        return ListComment::with('commentOwner:id,username')
-            ->where('id', $commentId)
-            ->firstOrFail();
+        return $comment->load('commentOwner:id,username');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\ListCommentStoreRequest  $request
-     * @param  int $listId
+     * @param  \App\Lists $list
      * @return \Illuminate\Http\Response
      */
-    public function store(ListCommentStoreRequest $request, $listId)
+    public function store(ListCommentStoreRequest $request, Lists $list)
     {
-        $list = Lists::where('id', $listId)->firstOrFail();
-
         $comment = new ListComment($request->all());
         $comment->user_id = Auth::id();
         $comment->ip_address = $request->getClientIp();
@@ -70,12 +65,11 @@ class ListCommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\ListCommentUpdateRequest  $request
-     * @param  int  $commentId
+     * @param  \App\ListComment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(ListCommentUpdateRequest $request, $commentId)
+    public function update(ListCommentUpdateRequest $request, ListComment $comment)
     {
-        $comment = ListComment::where('id', $commentId)->firstOrFail();
         $comment->update($request->all());
         $comment->ip_address = $request->getClientIp();
         $comment->save();
@@ -85,12 +79,11 @@ class ListCommentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Http\Requests\ListCommentDeleteRequest $request
-     * @param  int  $commentId
+     * @param  \App\ListComment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ListCommentDeleteRequest $request, $commentId)
+    public function destroy(ListCommentDeleteRequest $request, ListComment $comment)
     {
-        $comment = ListComment::where('id', $commentId)->firstOrFail();
         $comment->delete();
     }
 }
