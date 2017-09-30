@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Framework\Utilities\Filters;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListCommentDeleteRequest;
 use App\Http\Requests\ListCommentStoreRequest;
@@ -30,7 +31,12 @@ class ListCommentController extends Controller
      */
     public function index(Lists $list)
     {
-        return $list->comments()->with('commentOwner:id,username')->get();
+        return $list->comments()->with('commentOwner:id,username')
+            ->get()
+            ->map(function($comment) {
+               $comment->comment = Filters::runFilter($comment->comment);
+               return $comment;
+            });
     }
 
     /**
@@ -41,7 +47,10 @@ class ListCommentController extends Controller
      */
     public function getComment(ListComment $comment)
     {
-        return $comment->load('commentOwner:id,username');
+        $comment->load('commentOwner:id,username');
+        $comment->comment = Filters::runFilter($comment->comment);
+
+        return $comment;
     }
 
     /**
