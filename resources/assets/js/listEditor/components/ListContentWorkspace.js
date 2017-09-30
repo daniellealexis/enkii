@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ListOverviewSidebar from './ListOverviewSidebar';
-import ListContentWorkspace from './ListContentWorkspace';
-
-export default class ListEditor extends Component {
+export default class ListContentWorkspace extends Component {
     static propTypes = {
         listTitle: PropTypes.string,
         listDescription: PropTypes.string,
@@ -18,10 +15,10 @@ export default class ListEditor extends Component {
         } = this.props;
 
         return (
-            <div className={baseClassName}>
-                <ListOverviewSidebar listTitle={listTitle} />
-                <ListContentWorkspace {...this.props} />
-            </div>
+            <section className={baseClassName}>
+                <h1>{listTitle}</h1>
+                <p>{listDescription}</p>
+            </section>
         );
     }
 };
