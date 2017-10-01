@@ -89,7 +89,12 @@ class ListController extends Controller
         }
 
         $list = $this->getListWithListItems($id);
-        JavaScript::put(compact($list));
+
+        // List-editing app bootstrap data
+        JavaScript::put([
+            'list' => $list,
+        ]);
+
         return view('pages.list-edit', $list);
     }
 

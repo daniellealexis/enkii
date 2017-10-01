@@ -1,25 +1,42 @@
-.list-edit-form
-    width 100%
-    max-width $contentMaxWidth
+// .list-edit-form
+//     width 100%
+//     max-width $contentMaxWidth
 
-    .list-item
-        padding-bottom 2rem
-        position relative
+//     .list-item
+//         padding-bottom 2rem
+//         position relative
 
-        &::before
-            content '•'
-            position absolute
-            top 0
-            left -4rem
-            font-size 16rem
-            color $highlight-color
-            line-height 20px
+//         &::before
+//             content '•'
+//             position absolute
+//             top 0
+//             left -4rem
+//             font-size 16rem
+//             color $highlight-color
+//             line-height 20px
 
-    .list-items
-        padding-top 2rem
+//     .list-items
+//         padding-top 2rem
 
-        &__section-title
-            $headlineFontStyles()
-            font-size 1.5rem
-            padding-bottom 0.5rem
+//         &__section-title
+//             $headlineFontStyles()
+//             font-size 1.5rem
+//             padding-bottom 0.5rem
 
+$list-sidebar-width = 275px;
+
+.ListEditor {
+    display: flex;
+}
+
+.ListOverviewSidebar {
+    height: 100vh;
+    width: $list-sidebar-width;
+    padding: $sizing-m;
+    border-right: $default-border;
+    box-sizing: border-box;
+}
+
+.ListContentWorkspace {
+    padding: $sizing-l;
+}

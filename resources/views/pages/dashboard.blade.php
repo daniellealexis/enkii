@@ -15,7 +15,7 @@
     <div class="dashboard--lists container--medium">
         <h3 class="list-card__container__headline">Your Lists</h3>
         @if (!empty($lists))
-            <div class="list-card__container container--flex">
+            <div class="list-card__container container--flex-grid">
                 @foreach ($lists as $list)
                     @include('components.listCard', ['list' => $list])
                 @endforeach

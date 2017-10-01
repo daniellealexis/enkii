@@ -1,14 +1,14 @@
-@extends('layouts/default')
+@extends('layouts/blank-default')
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/react-entry.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/listEditor.js') }}"></script>
 @endpush
 
 @section('content')
-<main class="account horizontal-center">
-    <section class="list-edit-form form">
+<main>
+    {{-- <section class="list-edit-form form"> --}}
         {{-- {{ dd(get_defined_vars()) }} --}}
-        {{ Form::open(['url' => '/lists/'.$id]) }}
+{{--         {{ Form::open(['url' => '/lists/'.$id]) }}
             {{ Form::hidden('_method', 'PUT') }}
             {{ Form::formGroup_text('title', 'List Title', $title) }}
             {{ Form::formGroup_textarea('description', 'Description', $description) }}
@@ -25,10 +25,10 @@
                 </div>
             @endif
             {{ Form::formGroup_submit('Save List') }}
-        {{ Form::close() }}
+        {{ Form::close() }} --}}
         {{-- React App Root --}}
         <div id="root"></div>
-    </section>
+    {{-- </section> --}}
 
 </main>
 @stop

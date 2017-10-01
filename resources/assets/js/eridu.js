@@ -35,6 +35,7 @@ const Eridu = (function() {
         get,
         has,
         set,
+        store,
     };
 })();
 
@@ -45,14 +46,17 @@ function getInstance() {
 function initializeOnWindow() {
     var eridu = getInstance();
 
-    // Set data on the window to instance
-    eridu.set(window.eridu);
+
+    if (window.eridu) {
+        // Set data on the window to instance
+        eridu.set(window.eridu);
+
+        // Remove data from backend from window
+        delete window.eridu;
+    }
 
     // Set instance on window
     window.Eridu = eridu;
-
-    // Remove data from backend from window
-    delete window.eridu;
 
     // Return instance
     return eridu;
