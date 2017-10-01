@@ -1,5 +1,5 @@
 from __future__ import with_statement
-from fabric.api import local, settings, abort, run, cd, env, put
+from fabric.api import local, settings, abort, run, cd, env, put, task
 from fabric.contrib.console import confirm
 import os
 import fnmatch
@@ -65,12 +65,14 @@ excludes = (
     './postman_token.txt'
 )
 
+
 def _check_filter(filter, full_path):
     ret = (filter in full_path)
     if '*' in filter:
         ret = ret | fnmatch.fnmatch(full_path, filter)
 
     return ret
+
 
 # new method to filter
 # def _check_filter(info):
@@ -86,29 +88,33 @@ def _check_filter(filter, full_path):
 #
 #     return info
 
-def build(type='prod'):
+
+@task()
+def build(env='prod'):
     """
     Compile assets into the public directory
 
     Keyword arguments:
-    type -- environment to build, dev or prod (default prod)
+    env -- environment to build, dev or prod (default prod)
     """
-    if type != 'prod' and type != 'dev':
+    if env != 'prod' and env != 'dev':
         print 'must specify either dev or prod'
         return False
 
-    local('npm run ' + type)
+    local('npm run ' + env)
     return True
 
-def deploy(type='prod', do_migrate=False):
+
+@task()
+def deploy(env='prod', do_migrate='no'):
     """
     Compile assets, copy files to server and optionally run migrations
 
     Keyword arguments:
-    type         -- environment to build, dev or prod (default prod)
-    do_migration -- run the database migrations (default False)
+    env          -- environment to build, dev or prod (default prod)
+    do_migration -- run the database migrations (default no)
     """
-    if not build(type):
+    if not build(env):
         return
 
     # newer way of doing this, cleaner but slower... too slow for me
@@ -172,15 +178,45 @@ def deploy(type='prod', do_migrate=False):
         run('sudo chown -R www-data:www-data ./*')
         run('sudo chown -R root:root ./public')
         run('sudo composer install --no-dev --optimize-autoloader')
-        if do_migrate:
+        if do_migrate == 'yes':
             run('php artisan migrate')
 
+
+@task()
+def remote_init(env='prod', seed_only='yes'):
+    """
+    Reset database, initialize passport and seed the new database
+    This will produce a postman_token.txt file containing the admin user token
+
+    Keyword arguments:
+    env          -- environment to initialize, dev or prod (default prod)
+    seed_only    -- only seed the database, do not run migrations or drop the DB (default yes)
+    """
+    if env != 'prod' and env != 'dev':
+        print 'must specify either dev or prod'
+        return False
+
+    with cd(dest_dir):
+        seed_class = 'ProductionSeeder'
+        if env == 'dev':
+            seed_class = 'DatabaseSeeder'
+            run('sudo composer install --optimize-autoloader')
+
+        if seed_only == 'no':
+            run('php artisan db:drop')
+            run('php artisan migrate')
+            run('php artisan passport:install')
+
+        run('sudo php artisan db:seed --class=' + seed_class)
+
+
+@task()
 def init():
     """
     Reset database, initialize passport and seed the new database
     This will produce a postman_token.txt file containing the admin user token
     """
-    local('php artisan db:drop');
-    local('php artisan migrate');
-    local('php artisan passport:install');
-    local('php artisan db:seed');
+    local('php artisan db:drop')
+    local('php artisan migrate')
+    local('php artisan passport:install')
+    local('php artisan db:seed')

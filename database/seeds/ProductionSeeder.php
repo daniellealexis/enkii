@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class ProductionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,10 +19,6 @@ class DatabaseSeeder extends Seeder
         //disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        $this->call(UsersTableSeeder::class);
-        $this->call(ListsSeeder::class);
-        $this->call(ListItemsSeeder::class);
-        $this->call(ListCommentsSeeder::class);
         $this->call(CommentFilterSeeder::class);
 
         Model::reguard();
