@@ -10,7 +10,7 @@ import tempfile
 #TODO: add gitignore processing when file is encountered (this will clean up the excludes list) https://github.com/tsileo/dirtools
 
 dest_dir = '/var/www'
-env.hosts = ['enkii.net']
+env.hosts = ['enkii.io']
 env.user = 'ubuntu'
 env.key_filename = './enkii.pem'
 
