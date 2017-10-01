@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
 
-$base_domain = str_replace(['http://', 'https://'], '', strtolower(config('app.url')));
+// this is assuming that our domain will have 1 TLD, i.e. enkii.io and not enkii.co.in
+$domain = join('.', array_slice(explode('.', request()->getHost()), -2, 2));
 
 
-Route::domain('{account}.' . $base_domain)->group(function() {
+Route::domain('{account}.' . $domain)->group(function() {
 
     // Short URL shared link for all user's lists
     Route::get('/', 'ShareController@indexAll')->name('share.index_all');
@@ -33,7 +34,7 @@ Route::domain('{account}.' . $base_domain)->group(function() {
 });
 
 
-Route::domain($base_domain)->group(function() {
+Route::domain($domain)->group(function() {
 
     // User Authentication Routes
     Auth::routes();
